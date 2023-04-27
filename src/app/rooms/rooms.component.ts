@@ -26,8 +26,17 @@ export class RoomsComponent {
     bookedRooms: 5
   }
 
-  roomList: RoomList[] = [
-    {
+  roomList: RoomList[] = []
+    
+  
+  constructor() {}
+  
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+
+    this.roomList = [
+      {
       roomNumber: 1,
       roomType: 'Deluxe',
       amenities: 'air conditioning, TV, Wi-Fi',
@@ -35,6 +44,7 @@ export class RoomsComponent {
       photos: 'https://www.istockphoto.com/photo/modern-luxury-bedroom-gm1390233984-447267667',
       checkInTime: new Date('04-21-2023'),
       checkOutTime: new Date('04-22-2023'),
+      rating: 2.3,
     },
     {
       roomNumber: 2,
@@ -44,6 +54,7 @@ export class RoomsComponent {
       photos: 'https://www.istockphoto.com/photo/modern-luxury-bedroom-gm1390233984-447267667',
       checkInTime: new Date('04-21-2023'),
       checkOutTime: new Date('04-22-2023'),
+      rating: 3.6998,
     },
     {
       roomNumber: 3,
@@ -53,7 +64,10 @@ export class RoomsComponent {
       photos: 'https://www.istockphoto.com/photo/modern-luxury-bedroom-gm1390233984-447267667',
       checkInTime: new Date('04-21-2023'),
       checkOutTime: new Date('04-22-2023'),
-    },
-  ]
+      rating: 4.45,
+
+    }]
+    
+  }
 
 }
