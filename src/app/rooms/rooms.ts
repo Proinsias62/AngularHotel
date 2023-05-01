@@ -1,3 +1,7 @@
+//interface describes the shape of an object
+//the interfaces in this file are exported
+//and used in rooms.component.ts
+
 export interface Room {
     totalRooms: number;
     availableRooms: number;

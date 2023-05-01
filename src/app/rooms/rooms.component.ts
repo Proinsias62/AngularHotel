@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+
+//import the interfaces from rooms.ts
 import { Room, RoomList } from './rooms';
 
 @Component({
@@ -7,6 +9,7 @@ import { Room, RoomList } from './rooms';
   styleUrls: ['./rooms.component.scss']
 })
 
+//export the class below and use it in rooms.component.html
 export class RoomsComponent {
 
   hotelName = "Kerry Gardens";
@@ -14,23 +17,50 @@ export class RoomsComponent {
 
   hideRooms = true;
 
+
+
   toggle() {
     console.log("toggle()");
     this.hideRooms = !this.hideRooms;
 
   }
 
+  selectedRoom!: RoomList;
+
+  selectRoom(room: RoomList){
+    this.selectedRoom = room;
+    console.log(room);
+  }
+
+  addRoom(){
+    const room: RoomList = {
+      roomNumber: 1,
+      roomType: 'Stndard',
+      amenities: 'no air conditioning, TV, Wi-Fi',
+      price: 350,
+      photos: 'https://www.istockphoto.com/photo/modern-luxury-bedroom-gm1390233984-447267667',
+      checkInTime: new Date('05-01-2023'),
+      checkOutTime: new Date('05-04-2023'),
+      rating: 2.1,
+    };
+    this.roomList.push(room);
+
+  }
+
+  //Room must follow the shape of the Room
+  //interface prescribed in rooms.ts
   rooms: Room = {
     totalRooms: 20,
     availableRooms: 20,
     bookedRooms: 5
   }
-
+  //RoomList interface is described in rooms.ts
+  //in this instance it will be an array/object
   roomList: RoomList[] = []
     
   
   constructor() {}
-  
+
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.

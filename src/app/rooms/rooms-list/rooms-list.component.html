@@ -1,0 +1,31 @@
+<p>rooms-list works!</p>
+
+Rooms List
+<!--{{roomList}}-->
+<table class="table">
+    <tr>
+        <th>Even/Odd</th>
+        <th>Room Number</th>
+        <th>Room Type</th>
+        <th>Amenities</th>
+        <th>Price</th>
+        <th>Check In Date</th>
+        <th>Rating</th>
+        <th>Select Rooms</th>
+    </tr>
+    <tr [ngClass]="e ? 'even' : 'odd'"
+        *ngFor="let room of rooms | slice : 0:3; let e = even; let o = odd; let i = index">
+        <!-- {{ property | pipe }} -->
+        <td>{{e ? "Even" : "Odd"}}</td>
+        <td>{{ room.roomNumber | percent }}</td>
+        <td>{{ room.roomType | uppercase }}</td>
+        <td>{{ room.amenities | lowercase }}</td>
+        <td>{{ room.price | currency : '€ ' }}</td>
+        <td>{{ room.checkInTime | date }}</td>
+        <td>{{ room.rating | number : '1.0-4' }}</td>
+        <td>
+            <!--makes a button that when clicked calls the selectRoom function-->
+            <button class="btn btn-primary" (click)="selectRoom(room)">Select</button>
+        </td>
+    </tr>
+</table>

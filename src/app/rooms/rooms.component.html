@@ -6,36 +6,21 @@
 </div>
 
 
-
 {{rooms?.availableRooms ?? 'No Rooms'}}
 
 <!-- {{roomList | json }} -->
+<div *ngIf="selectedRoom">
+    HERE...........
+    {{selectedRoom | json}}
+</div>
 
+<div>
+    <button (click)="addRoom">Add Room</button>
+</div>
 
 <div *ngIf="rooms.availableRooms > 0">
-    Rooms List
-    <!--{{roomList}}-->
-    <table class="table">
-        <tr>
-            <th>Even/Odd</th>
-            <th>Room Number</th>
-            <th>Room Type</th>
-            <th>Amenities</th>
-            <th>Price</th>
-            <th>Check In Date</th>
-            <th>Rating</th>
-        </tr>
-        <tr [ngClass]="e ? 'even' : 'odd'"
-            *ngFor="let room of roomList | slice : 0:2; let e = even; let o = odd; let i = index">
-            <!-- {{ property | pipe }} -->
-            <td>{{e ? "Even" : "Odd"}}</td>
-            <td>{{ room.roomNumber | percent }}</td>
-            <td>{{ room.roomType | uppercase }}</td>
-            <td>{{ room.amenities | lowercase }}</td>
-            <td>{{ room.price | currency : '€ ' }}</td>
-            <td>{{ room.checkInTime | date }}</td>
-            <td>{{ room.rating | number : '1.0-4' }}</td>
-        </tr>
-    </table>
+    <!--Imports this info from rooms-list.component-->
+    <!--Exports it to app.component in the <hinv-rooms component>-->
+    <hinv-rooms-list [rooms]="roomList" (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
 </div>
 <button (click)="toggle()">Toggle</button>
