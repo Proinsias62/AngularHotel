@@ -1,8 +1,15 @@
 <h1>Hello World</h1>
 <!-- <hinv-header></hinv-header> -->
-<hinv-rooms></hinv-rooms>
+<!-- <hinv-rooms></hinv-rooms><br> -->
+<hinv-container>
+    <hinv-rooms></hinv-rooms><br>
+    <h3>Inside APP HTML Rooms up, employee below</h3>
+    <h3>However the actual order is given in <br>container and is the reverse order</h3>
+    <hinv-employee></hinv-employee>
+    <h3>This is from ng-content</h3>
+</hinv-container>
+<!--#name is controlled by @ViewChild('name') in app.component.ts-->
 <div #name>Expecting my Name</div>
-
 
 <!--
 <div [ngSwitch]="role">
@@ -21,7 +28,7 @@
 <div ngSwitch="francis"></div>
 -->
 
-
+<!--#user was controlled by @ViewChild('user') in app.component-->
 <!-- <div>
     <ng-template #user></ng-template>
 </div> -->

@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit, EventEmitter,ChangeDetectionStrategy, OnChanges, SimpleChanges  } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter,ChangeDetectionStrategy, OnChanges, SimpleChanges, OnDestroy  } from '@angular/core';
 import { RoomList } from '../rooms';
 
 @Component({
@@ -8,7 +8,7 @@ import { RoomList } from '../rooms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class RoomsListComponent implements OnInit, OnChanges {
+export class RoomsListComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() rooms: RoomList[] = [];
 
@@ -31,6 +31,10 @@ export class RoomsListComponent implements OnInit, OnChanges {
   ngOnInit(): void {   
   }
 
-  constructor() {};
+  constructor() {}ngOnDestroy(): void {
+    //throw new Error('Method not implemented.');
+    console.log("On Destroy is Called");
+  }
+;
 
 }

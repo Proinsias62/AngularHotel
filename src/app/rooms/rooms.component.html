@@ -21,7 +21,7 @@
     <button (click)="addRoom()">Add Room</button>
 </div>
 
-<div *ngIf="rooms.availableRooms > 0">
+<div *ngIf="hideRooms">
     <!--Imports this info from rooms-list.component-->
     <!--Exports it to app.component in the <hinv-rooms component>-->
     <hinv-rooms-list [rooms]="roomList" [title]="title"

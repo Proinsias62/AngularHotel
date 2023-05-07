@@ -1,8 +1,9 @@
-import { Component, OnInit, DoCheck, ViewChild, AfterViewInit, AfterViewChecked, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, DoCheck, ViewChild, AfterViewInit, AfterViewChecked, ViewChildren, QueryList, OnDestroy } from '@angular/core';
 
 //import the interfaces from rooms.ts
 import { Room, RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
+import { RoomsService } from './rooms-list/services/rooms.service';
 
 @Component({
   selector: 'hinv-rooms',
@@ -11,7 +12,7 @@ import { HeaderComponent } from '../header/header.component';
 })
 
 //export the class below and use it in rooms.component.html
-export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked {
+export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked, OnDestroy {
 
   hotelName = "Kerry Gardens";
   numberOfRooms = 25;
@@ -24,10 +25,17 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
   @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
+
+  //roomService = new RoomsService(); Don't use this method, see constructor below
  
   selectedRoom!: RoomList;
+
   
-  constructor() { }
+  constructor(private roomsService: RoomsService) { }
+  ngOnDestroy(): void {
+   //throw new Error('Method not implemented.');
+   console.log("On Destroy Is Called");
+  }
   ngAfterViewChecked(): void {
     //throw new Error('Method not implemented.');
     console.log("After View Checked")
@@ -36,42 +44,8 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-
     //console.log("OnInit", this.headerComponent);
-
-    this.roomList = [
-      {
-        roomNumber: 1,
-        roomType: 'Deluxe',
-        amenities: 'air conditioning, TV, Wi-Fi',
-        price: 500,
-        photos: 'https://www.istockphoto.com/photo/modern-luxury-bedroom-gm1390233984-447267667',
-        checkInTime: new Date('04-21-2023'),
-        checkOutTime: new Date('04-22-2023'),
-        rating: 2.3,
-      },
-      {
-        roomNumber: 2,
-        roomType: 'Family',
-        amenities: 'air conditioning, TV, Wi-Fi',
-        price: 600,
-        photos: 'https://www.istockphoto.com/photo/modern-luxury-bedroom-gm1390233984-447267667',
-        checkInTime: new Date('04-21-2023'),
-        checkOutTime: new Date('04-22-2023'),
-        rating: 3.6998,
-      },
-      {
-        roomNumber: 3,
-        roomType: 'Standard',
-        amenities: 'TV, Wi-Fi',
-        price: 400,
-        photos: 'https://www.istockphoto.com/photo/modern-luxury-bedroom-gm1390233984-447267667',
-        checkInTime: new Date('04-21-2023'),
-        checkOutTime: new Date('04-22-2023'),
-        rating: 4.45,
-
-      }]
-
+    this.roomList = this.roomsService.getRooms();
   }
 
   //Room must follow the shape of the Room
