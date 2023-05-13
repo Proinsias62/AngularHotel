@@ -4,6 +4,7 @@ import { RoomList } from '../../rooms';
 @Injectable({
   providedIn: 'root'
 })
+
 export class RoomsService {
 
   roomList: RoomList[] = [
@@ -39,7 +40,9 @@ export class RoomsService {
 
     }]
 
-  constructor() { }
+  constructor() {
+    console.log("Rooms Service Initialised");
+   }
 
   getRooms() {
     return this.roomList;

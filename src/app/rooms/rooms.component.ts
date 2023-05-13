@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck, ViewChild, AfterViewInit, AfterViewChecked, ViewChildren, QueryList, OnDestroy } from '@angular/core';
+import { Component, OnInit, DoCheck, ViewChild, AfterViewInit, AfterViewChecked, ViewChildren, QueryList, OnDestroy, SkipSelf } from '@angular/core';
 
 //import the interfaces from rooms.ts
 import { Room, RoomList } from './rooms';
@@ -31,7 +31,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   selectedRoom!: RoomList;
 
   
-  constructor(private roomsService: RoomsService) { }
+  constructor(@SkipSelf() private roomsService: RoomsService) { }
   ngOnDestroy(): void {
    //throw new Error('Method not implemented.');
    console.log("On Destroy Is Called");

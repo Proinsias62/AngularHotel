@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Optional, ViewChild, ViewContainerRef } from '@angular/core';
 import { RoomsComponent } from './rooms/rooms.component';
+import { LoggerService } from './rooms/rooms-list/services/logger.service';
 
 @Component({
   selector: 'hinv-root',
@@ -15,11 +16,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   title = 'hotelinventoryapp';
 
   @ViewChild('name', { static: true }) name!: ElementRef;
-
   // @ViewChild('user', { read: ViewContainerRef }) vcr!: ViewContainerRef;
+
+  constructor(@Optional() private loggerService: LoggerService){}
 
   ngOnInit(): void {
     //throw new Error('Method not implemented.');
+    this.loggerService?.Log('AppComponent.ngOnInit(Francis)')
     this.name.nativeElement.innerText = "Francis Hotel";
   }
 
