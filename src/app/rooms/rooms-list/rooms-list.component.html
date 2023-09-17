@@ -17,7 +17,7 @@
         *ngFor="let room of rooms; let e = even; let o = odd; let i = index">
         <!-- {{ property | pipe }} -->
         <td>{{e ? "Even" : "Odd"}}</td>
-        <td>{{ room.roomNumber | percent }}</td>
+        <td>{{ room.roomNumber | number }}</td>
         <td>{{ room.roomType | uppercase }}</td>
         <td>{{ room.amenities | lowercase }}</td>
         <td>{{ room.price | currency : '€ ' }}</td>

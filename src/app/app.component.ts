@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, ElementRef, OnInit, Optional, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, Optional, ViewChild, ViewContainerRef } from '@angular/core';
 import { RoomsComponent } from './rooms/rooms.component';
 import { LoggerService } from './rooms/rooms-list/services/logger.service';
+import { localStorageToken } from './localstorage.token';
 
 @Component({
   selector: 'hinv-root',
@@ -18,12 +19,14 @@ export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('name', { static: true }) name!: ElementRef;
   // @ViewChild('user', { read: ViewContainerRef }) vcr!: ViewContainerRef;
 
-  constructor(@Optional() private loggerService: LoggerService){}
+  constructor(@Optional() private loggerService: LoggerService, 
+  @Inject(localStorageToken) private localStorage: Storage){}
 
   ngOnInit(): void {
     //throw new Error('Method not implemented.');
     this.loggerService?.Log('AppComponent.ngOnInit(Francis)')
-    this.name.nativeElement.innerText = "Francis Hotel";
+    //this.name.nativeElement.innerText = "Francis Hotel";
+    this.localStorage.setItem('name', 'Hilton Tralee');
   }
 
   ngAfterViewInit(): void {

@@ -1,46 +1,53 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { RoomList } from '../../rooms';
+import { APP_SERVICE_CONFIG } from 'src/app/AppConfig/appconfig.service';
+import { AppConfig } from 'src/app/AppConfig/appconfig.interface';
+//import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class RoomsService {
-
   roomList: RoomList[] = [
     {
       roomNumber: 1,
-      roomType: 'Deluxe',
-      amenities: 'air conditioning, TV, Wi-Fi',
+      roomType: 'Deluxe Room',
+      amenities: 'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
       price: 500,
-      photos: 'https://www.istockphoto.com/photo/modern-luxury-bedroom-gm1390233984-447267667',
-      checkInTime: new Date('04-21-2023'),
-      checkOutTime: new Date('04-22-2023'),
-      rating: 2.3,
+      photos:
+        'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+      checkInTime: new Date('11-Nov-2021'),
+      checkOutTime: new Date('12-Nov-2021'),
+      rating: 4.5,
     },
     {
       roomNumber: 2,
-      roomType: 'Family',
-      amenities: 'air conditioning, TV, Wi-Fi',
-      price: 600,
-      photos: 'https://www.istockphoto.com/photo/modern-luxury-bedroom-gm1390233984-447267667',
-      checkInTime: new Date('04-21-2023'),
-      checkOutTime: new Date('04-22-2023'),
-      rating: 3.6998,
+      roomType: 'Deluxe Room',
+      amenities: 'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
+      price: 1000,
+      photos:
+        'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+      checkInTime: new Date('11-Nov-2021'),
+      checkOutTime: new Date('12-Nov-2021'),
+      rating: 3.45654,
     },
     {
       roomNumber: 3,
-      roomType: 'Standard',
-      amenities: 'TV, Wi-Fi',
-      price: 400,
-      photos: 'https://www.istockphoto.com/photo/modern-luxury-bedroom-gm1390233984-447267667',
-      checkInTime: new Date('04-21-2023'),
-      checkOutTime: new Date('04-22-2023'),
-      rating: 4.45,
+      roomType: 'Private Suite',
+      amenities: 'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
+      price: 15000,
+      photos:
+        'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+      checkInTime: new Date('11-Nov-2021'),
+      checkOutTime: new Date('12-Nov-2021'),
+      rating: 2.6,
+    },
+  ];
 
-    }]
-
-  constructor() {
+  constructor(@Inject(APP_SERVICE_CONFIG) private config:AppConfig ) {
+    //console.log(environment.apiEndpoint);
+    console.log(this.config.apiEndpoint);
     console.log("Rooms Service Initialised");
    }
 

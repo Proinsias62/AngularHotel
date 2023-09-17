@@ -16,8 +16,10 @@ export class ContainerComponent implements OnInit, AfterContentInit{
   constructor(@Host() private roomService: RoomsService){}
   ngAfterContentInit(): void {
     //throw new Error('Method not implemented.');
+    console.log("BEFORE INIT", this.employee.emplName)
+    console.log("AFTER INIT it should change to Elaine")
     console.log(this.employee)
-    this.employee.emplName = "Elaine";
+    this.employee.emplName = "Elaine - AFTER INIT";
   }
   ngOnInit(): void {
     //throw new Error('Method not implemented.');
