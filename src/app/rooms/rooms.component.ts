@@ -16,7 +16,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   hotelName = "Kerry Gardens";
   numberOfRooms = 25;
-  
+
   hideRooms = true;
 
   title = 'Room List First';
@@ -27,14 +27,14 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
 
   //roomService = new RoomsService(); Don't use this method, see constructor below
- 
+
   selectedRoom!: RoomList;
 
-  
+
   constructor(@SkipSelf() private roomsService: RoomsService) { }
   ngOnDestroy(): void {
-   //throw new Error('Method not implemented.');
-   console.log("On Destroy Is Called");
+    //throw new Error('Method not implemented.');
+    console.log("On Destroy Is Called");
   }
   ngAfterViewChecked(): void {
     //throw new Error('Method not implemented.');
@@ -77,19 +77,18 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   }
 
   addRoom() {
-    console.log("ADDING")
-
     const room: RoomList = {
       roomNumber: 4,
-      roomType: 'Stndard',
-      amenities: 'no air conditioning, TV, Wi-Fi',
-      price: 350,
-      photos: 'https://www.istockphoto.com/photo/modern-luxury-bedroom-gm1390233984-447267667',
-      checkInTime: new Date('05-01-2023'),
-      checkOutTime: new Date('05-04-2023'),
-      rating: 2.1,
+      roomType: "Super Deluxe",
+      amenities: "The whole works",
+      price: 20000,
+      photos:
+        'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+      checkInTime: new Date('11-Nov-2021'),
+      checkOutTime: new Date('12-Nov-2021'),
+      rating: 4.95,
     };
-    //this.roomList.push(room);
+    console.log("ADDING");
     this.roomList = [...this.roomList, room];
 
   }
